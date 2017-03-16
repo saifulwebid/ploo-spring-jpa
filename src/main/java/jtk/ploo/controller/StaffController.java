@@ -46,4 +46,9 @@ public class StaffController {
 		return staffRepository.save(new Staff(name, address, position, faculty));
 	}
 	
+	@RequestMapping("/findById")
+	public Staff findById(@RequestParam("id") Long id) {
+		return staffRepository.findOne(id);
+	}
+	
 }

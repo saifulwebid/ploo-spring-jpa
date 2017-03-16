@@ -35,4 +35,10 @@ public class FacultyController {
 	public Faculty create(@RequestParam("name") String name) {		
 		return repository.save(new Faculty(name, new Date()));
 	}
+	
+	@RequestMapping("/findById")
+	public Faculty findById(@RequestParam("id") Long id) {
+		return repository.findOne(id);
+	}
+	
 }
