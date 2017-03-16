@@ -27,6 +27,26 @@ public class Faculty {
 		this.establishedDate = estDate;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getEstablishedDate() {
+		return establishedDate;
+	}
+
+	public void setEstablishedDate(Date establishedDate) {
+		this.establishedDate = establishedDate;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format(
