@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+	<title>Faculty List</title>	
+</head>
+<body>
+	<header th:replace="layout :: site-header" />
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="page-header">
+					<h1>
+						Faculty List
+						<span class="small">
+							<a href="#" class="btn btn-default">Add</a>
+						</span>
+					</h1>
+				</div>
+	
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Established Date</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="faculty : ${faculties}">
+							<td th:text="${faculty.id}"></td>
+							<td th:text="${faculty.name}"></td>
+							<td th:text="${faculty.establishedDate}"></td>
+							<td>
+								<a class="btn btn-default" href="#">Edit</a>
+								<a class="btn btn-danger" href="#">Delete</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
