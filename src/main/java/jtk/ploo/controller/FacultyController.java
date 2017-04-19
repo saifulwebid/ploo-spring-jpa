@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,14 +23,12 @@ public class FacultyController {
 	FacultyRepository repository;
 	
 	@RequestMapping("/list")
-	public List<Faculty> list() {
-		List<Faculty> result = new ArrayList<Faculty>();
+	public String list(Model model) {
+		List<Faculty> faculties = (List<Faculty>) repository.findAll();
 		
-		for (Faculty faculty : repository.findAll()) {
-			result.add(faculty);
-		}
+		model.addAttribute("faculties", faculties);
 		
-		return result;
+		return "faculty";
 	}
 	
 	@RequestMapping("/create")
