@@ -28,7 +28,7 @@ public class FacultyController {
 		
 		model.addAttribute("faculties", faculties);
 		
-		return "faculty";
+		return "faculty/list";
 	}
 	
 	@RequestMapping("/create")
