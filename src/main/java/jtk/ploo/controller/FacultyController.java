@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,9 +35,11 @@ public class FacultyController {
 		return "faculty/list";
 	}
 	
-	@RequestMapping("/create")
-	public Faculty create(@RequestParam("name") String name) {		
-		return repository.save(new Faculty(name, new Date()));
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(@Valid Faculty faculty, BindingResult bindingResult, Model model) {		
+		repository.save(faculty);
+		
+		return "redirect:/faculty/list";
 	}
 	
 	@RequestMapping("/findById")
