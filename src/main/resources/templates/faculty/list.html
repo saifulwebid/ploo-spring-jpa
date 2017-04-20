@@ -13,7 +13,7 @@
 					<h1>
 						Faculty List
 						<span class="small">
-							<a href="#" class="btn btn-default">Add</a>
+							<a th:href="@{/faculty/create}" class="btn btn-default">Add</a>
 						</span>
 					</h1>
 				</div>
@@ -33,8 +33,8 @@
 							<td th:text="${faculty.name}"></td>
 							<td th:text="${faculty.establishedDate}"></td>
 							<td>
-								<a class="btn btn-default" href="#">Edit</a>
-								<a class="btn btn-danger" href="#">Delete</a>
+								<a class="btn btn-default btn-xs" th:href="@{/faculty/edit/{id}(id=${faculty.id})}">Edit</a>
+								<a class="btn btn-danger btn-xs" th:href="@{/faculty/delete/{id}(id=${faculty.id})}">Delete</a>
 							</td>
 						</tr>
 					</tbody>
