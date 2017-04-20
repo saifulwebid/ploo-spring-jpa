@@ -50,6 +50,26 @@ public class FacultyController {
 		return "redirect:/faculty/list";
 	}
 	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String showEditForm(Model model, @PathVariable("id") Long id) {
+		model.addAttribute("faculty", repository.findOne(id));
+		
+		return "faculty/edit";
+	}
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+	public String update(@Valid Faculty inputData, BindingResult bindingResult, Model model,
+			@PathVariable("id") Long id) {
+		Faculty faculty = repository.findOne(id);
+		
+		faculty.setName(inputData.getName());
+		faculty.setEstablishedDate(inputData.getEstablishedDate());
+		
+		repository.save(faculty);
+		
+		return "redirect:/faculty/list";
+	}
+	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable("id") Long id) {
 		repository.delete(repository.findOne(id));
