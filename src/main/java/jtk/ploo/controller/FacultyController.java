@@ -70,7 +70,7 @@ public class FacultyController {
 		return "redirect:/faculty";
 	}
 	
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
 		repository.delete(repository.findOne(id));
 		
