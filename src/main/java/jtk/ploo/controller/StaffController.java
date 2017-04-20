@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,14 +40,19 @@ public class StaffController {
 		return "staff/list";
 	}
 	
-	@RequestMapping("/create")
-	public Staff create(@RequestParam("name") String name,
-			@RequestParam("address") String address,
-			@RequestParam("position") String position,
-			@RequestParam("faculty") String faculty_name) {
-		Faculty faculty = facultyRepository.findByName(faculty_name).get(0);
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public String showCreateForm(Model model) {
+		model.addAttribute("staff", new Staff("", "", "", null));
+		model.addAttribute("faculties", facultyRepository.findAll());
 		
-		return staffRepository.save(new Staff(name, address, position, faculty));
+		return "staff/add";
+	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(@Valid Staff staff, BindingResult bindingResult, Model model) {
+		staffRepository.save(staff);
+		
+		return "redirect:/staff";
 	}
 	
 	@RequestMapping("/findById")
