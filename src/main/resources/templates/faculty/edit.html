@@ -25,7 +25,7 @@
 					<div class="form-group">
 						<label for="estDate" class="col-md-4 control-label">Established Date</label>
 						<div class="col-md-8">
-							<input type="date" class="form-control" th:field="*{establishedDate}" id="estDate" placeholder="Established Date" />
+							<input type="date" class="form-control" th:field="*{establishedDate}" th:value="${#dates.format(faculty.establishedDate, 'yyyy-MM-dd')}" id="estDate" placeholder="Established Date" />
 						</div>
 					</div>
 					<div class="form-group">

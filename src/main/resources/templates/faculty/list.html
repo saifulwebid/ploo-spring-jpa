@@ -31,7 +31,7 @@
 						<tr th:each="faculty : ${faculties}">
 							<td th:text="${faculty.id}"></td>
 							<td th:text="${faculty.name}"></td>
-							<td th:text="${faculty.establishedDate}"></td>
+							<td th:text="${#dates.format(faculty.establishedDate, 'd MMMM yyyy')}"></td>
 							<td>
 								<a class="btn btn-default btn-xs" th:href="@{/faculty/edit/{id}(id=${faculty.id})}">Edit</a>
 								<a class="btn btn-danger btn-xs" th:href="@{/faculty/delete/{id}(id=${faculty.id})}">Delete</a>

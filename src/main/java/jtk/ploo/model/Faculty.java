@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Faculty {
 
@@ -17,6 +19,7 @@ public class Faculty {
 	
 	private String name;
 	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="established_date")
 	private Date establishedDate;
 	
