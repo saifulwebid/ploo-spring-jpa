@@ -27,7 +27,7 @@ public class FacultyController {
 	@Autowired
 	FacultyRepository repository;
 	
-	@RequestMapping("/list")
+	@RequestMapping("")
 	public String list(Model model) {
 		List<Faculty> faculties = (List<Faculty>) repository.findAll();
 		
@@ -47,7 +47,7 @@ public class FacultyController {
 	public String create(@Valid Faculty faculty, BindingResult bindingResult, Model model) {		
 		repository.save(faculty);
 		
-		return "redirect:/faculty/list";
+		return "redirect:/faculty";
 	}
 	
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -67,14 +67,14 @@ public class FacultyController {
 		
 		repository.save(faculty);
 		
-		return "redirect:/faculty/list";
+		return "redirect:/faculty";
 	}
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable("id") Long id) {
 		repository.delete(repository.findOne(id));
 		
-		return "redirect:/faculty/list";
+		return "redirect:/faculty";
 	}
 	
 }
