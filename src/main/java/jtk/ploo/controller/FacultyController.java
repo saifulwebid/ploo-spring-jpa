@@ -35,6 +35,13 @@ public class FacultyController {
 		return "faculty/list";
 	}
 	
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public String showCreateForm(Model model) {
+		model.addAttribute("faculty", new Faculty("", new Date()));
+		
+		return "faculty/add";
+	}
+	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(@Valid Faculty faculty, BindingResult bindingResult, Model model) {		
 		repository.save(faculty);
