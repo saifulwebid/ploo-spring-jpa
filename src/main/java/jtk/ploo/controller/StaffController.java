@@ -56,6 +56,29 @@ public class StaffController {
 		return "redirect:/staff";
 	}
 	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String showEditForm(Model model, @PathVariable("id") Long id) {
+		model.addAttribute("staff", staffRepository.findOne(id));
+		model.addAttribute("faculties", facultyRepository.findAll());
+		
+		return "staff/edit";
+	}
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+	public String edit(@Valid Staff inputData, BindingResult bindingResult, Model model,
+			@PathVariable("id") Long id) {
+		Staff staff = staffRepository.findOne(id);
+		
+		staff.setName(inputData.getName());
+		staff.setAddress(inputData.getAddress());
+		staff.setPosition(inputData.getPosition());
+		staff.setFaculty(inputData.getFaculty());
+		
+		staffRepository.save(staff);
+		
+		return "redirect:/staff";
+	}
+	
 	@RequestMapping("/delete/{id}")
 	public String findById(Model model, @PathVariable("id") Long id) {
 		staffRepository.delete(staffRepository.findOne(id));
