@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+	<title>Edit Staff</title>	
+</head>
+<body>
+	<header th:replace="layout :: site-header" />
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="page-header">
+					<h1>
+						Edit Staff
+					</h1>
+				</div>
+	
+				<form class="form-horizontal" th:object="${staff}" th:action="@{/staff/edit/{id}(id=${staff.id})}" method="post">
+					<div class="form-group">
+						<label for="name" class="col-md-4 control-label">Name</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Name" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="address" class="col-md-4 control-label">Address</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" th:field="*{address}" id="address" placeholder="Address" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="position" class="col-md-4 control-label">Position</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" th:field="*{position}" id="position" placeholder="Position" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="faculty" class="col-md-4 control-label">Faculty</label>
+						<div class="col-md-8">
+							<select class="form-control" id="faculty" name="faculty">
+								<option th:each="faculty : ${faculties}" th:value="${faculty.id}" th:text="${faculty.name}" th:selected="${staff.faculty.equals(faculty)}" />
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-8 col-md-offset-4">
+							<button type="submit" class="btn btn-default">Edit Staff</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

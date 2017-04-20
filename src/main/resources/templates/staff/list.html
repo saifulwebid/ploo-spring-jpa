@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+	<title>Staff List</title>	
+</head>
+<body>
+	<header th:replace="layout :: site-header" />
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="page-header">
+					<h1>
+						Staff List
+						<span class="small">
+							<a th:href="@{/staff/create}" class="btn btn-default">Add</a>
+						</span>
+					</h1>
+				</div>
+	
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Address</th>
+							<th>Position</th>
+							<th>Faculty</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="staff : ${staffs}">
+							<td th:text="${staff.id}"></td>
+							<td th:text="${staff.name}"></td>
+							<td th:text="${staff.address}"></td>
+							<td th:text="${staff.position}"></td>
+							<td th:text="${staff.faculty.name}"></td>
+							<td>
+								<a class="btn btn-default btn-xs" th:href="@{/staff/edit/{id}(id=${staff.id})}">Edit</a>
+								<a class="btn btn-danger btn-xs" th:href="@{/staff/delete/{id}(id=${staff.id})}">Delete</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
