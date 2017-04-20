@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,15 +27,13 @@ public class StaffController {
 	@Autowired
 	FacultyRepository facultyRepository;
 	
-	@RequestMapping("/list")
-	public List<Staff> list() {
-		List<Staff> result = new ArrayList<Staff>();
+	@RequestMapping("")
+	public String list(Model model) {
+		List<Staff> staffs = (List<Staff>) staffRepository.findAll();
 		
-		for (Staff staff : staffRepository.findAll()) {
-			result.add(staff);
-		}
+		model.addAttribute("staffs", staffs);
 		
-		return result;
+		return "staff/list";
 	}
 	
 	@RequestMapping("/create")
